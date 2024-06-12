@@ -8,7 +8,7 @@ pipeline {
 	stages {
 		stage('Checkout') {
 			steps {
-				git branch: 'main', url: 'https://github.com/leoashcraft/Jenkins-Laravel-Portfolio'
+				git branch: 'main', url: 'https://github.com/leoashcraft/ashcraft-portfolio'
 			}
 		}
 
