@@ -21,10 +21,4 @@ pipeline {
 			}
 		}
 	}
-
-	post {
-		failure {
-			// Future notifications
-		}
-	}
 }
