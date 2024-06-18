@@ -26,7 +26,7 @@ pipeline {
                         DB_CONNECTION=mysql
                         DB_HOST=mysql
                         DB_PORT=3306
-                        DB_DATABASE=ashcraft_portfolio
+                        DB_DATABASE=${DB_DATABASE}
                         DB_USERNAME=${DB_USERNAME}
                         DB_PASSWORD=${DB_PASSWORD}
                         """
