@@ -14,10 +14,26 @@ pipeline {
 
 		stage('Build and Deploy') {
 			steps {
-				script {
-					sh "docker-compose down"
-					sh "docker-compose up --build -d"
-				}
+                script {
+                    withCredentials([
+                        string(credentialsId: 'laravel-app-key', variable: 'APP_KEY'),
+                        usernamePassword(credentialsId: 'db-credentials', usernameVariable: 'DB_USERNAME', passwordVariable: 'DB_PASSWORD')
+                    ]) {
+                        sh "docker-compose down"
+
+                        writeFile file: '.env.docker', text: """
+                        APP_KEY=${APP_KEY}
+                        DB_CONNECTION=mysql
+                        DB_HOST=mysql
+                        DB_PORT=3306
+                        DB_DATABASE=ashcraft_portfolio
+                        DB_USERNAME=${DB_USERNAME}
+                        DB_PASSWORD=${DB_PASSWORD}
+                        """
+
+                        sh "docker-compose --env-file .env.docker up --build -d"
+                    }
+                }
 			}
 		}
 	}
