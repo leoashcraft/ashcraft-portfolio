@@ -16,8 +16,10 @@ pipeline {
 			steps {
                 script {
                     withCredentials([
-                        string(credentialsId: 'laravel-app-key', variable: 'APP_KEY'),
-                        usernamePassword(credentialsId: 'db-credentials', usernameVariable: 'DB_USERNAME', passwordVariable: 'DB_PASSWORD')
+                        string(credentialsId: 'APP_KEY', variable: 'APP_KEY'),
+                        string(credentialsId: 'DB_DATABASE', variable: 'DB_DATABASE'),
+                        string(credentialsId: 'DB_USERNAME', variable: 'DB_USERNAME'),
+                        string(credentialsId: 'db_PASSWORD', variable: 'DB_PASSWORD')
                     ]) {
                         sh "docker-compose down"
 
